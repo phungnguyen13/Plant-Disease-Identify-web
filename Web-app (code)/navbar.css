@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredoka', 'Josefin Sans', sans-serif;
+    background-color: #f8f9fa;
+    color: #333333;
+    overflow-x: hidden;
+    padding-top: 64px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 15px 64px;
+    background-color: #e0e0e0;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f2f2f2;
+    padding: 2px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    width: 25%;
+    position: relative;
+}
+
+.search-box:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.search-box:focus-within {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 30%;
+}
+
+.search-box i {
+    color: #555;
+    margin-right: 10px;
+}
+
+.bi-arrow-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 45px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 0 20px 20px 0;
+    margin-right: 0 !important;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within .bi-arrow-right {
+    opacity: 1;
+    visibility: visible;
+    background-color: #dcdcdc;
+    color: #999 !important;
+}
+
+.search-box input:not(:placeholder-shown) ~ .bi-arrow-right {
+    background-color: #9e9e9e;
+    color: #ffffff !important;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.search-box input:not(:placeholder-shown) ~ .bi-arrow-right:hover {
+    background-color: #888888;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Fredoka';
+    color: #333;
+    width: 100%;
+    height: 32px;
+}
+
+.nav-btn {
+    position: absolute;
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa chuẩn xác để tính tọa độ trượt không bị lệch */
+    z-index: 1;
+}
+
+/* Khung nền trượt mượt mà */
+.nav-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #b3b3b3; /* Đổi thành #222 nếu bạn muốn khung đen */
+    border-radius: 20px;
+    z-index: -1;
+    /* Hiệu ứng trượt có độ đàn hồi nhẹ rất mượt */
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.nav-btn li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: color 0.25s ease;
+    position: relative;
+}
+
+/* Chữ và icon khi đang ở trang đó (nếu dùng khung đen thì đổi color thành #ffffff) */
+.nav-btn li.active a {
+    color: #111;
+    font-weight: 600;
+}
+
+/* Hover nhẹ chỉ đổi màu chữ, không tạo khung giả làm rối hiệu ứng trượt */
+.nav-btn li:not(.active) a:hover {
+    color: #111;
+}
+
+.user-section {
+    position: absolute;
+    right: 64px;
+}
+
+.acc-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-icon {
+    font-size: 2rem;
+    color: #666;
+}
+
+.user-info .user-name {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.user-info .user-settings {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.bi-chevron-down {
+    margin-left: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.user-section:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu ul {
+    list-style: none;
+}
+
+.dropdown-menu ul li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.dropdown-menu i {
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.dropdown-menu ul li:last-child {
+    margin-top: 8px;
+    border-top: 0.1px solid #dfdddd ;
+}
+
+.dropdown-menu ul li:last-child a {
+    color: #dc3545;
+}
+
+.dropdown-menu ul li a:hover {
+    background: #f0f0f0;
+}
+
+body.modal-open {
+    overflow: hidden;
+}

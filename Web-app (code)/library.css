@@ -1,0 +1,136 @@
+.library-main {
+    padding: 50px 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    min-height: 75vh;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    align-items: stretch;
+}
+
+.lib-card {
+    background: #e9ecef;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dee2e6;
+}
+
+.lib-img-placeholder {
+    width: 100%;
+    height: 220px;
+    background: #cccccc;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777777;
+    margin-bottom: 20px;
+}
+
+.lib-img-placeholder i.bi-image {
+    font-size: 3.5rem;
+}
+
+.lib-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.lib-heading {
+    font-size: 24px;
+    font-weight: 650;
+    color: #333333;
+    margin: 0 0 6px 0;
+}
+
+.lib-subheading {
+    font-size: 16px;
+    font-weight: 600; 
+    color: #666666;
+    margin: 0 0 14px 0;
+}
+
+.lib-desc {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+    flex: 1;
+}
+
+.lib-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start; 
+}
+
+.lib-actions button {
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: fit-content; 
+}
+
+.btn-secondary {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #444444;
+    border: 1.5px solid #cccccc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #f1f2f3;
+}
+
+.btn-secondary.active {
+    background-color: #495057;
+    border-color: #495057;
+    color: #ffffff;
+}
+
+.btn-secondary.active:hover {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-primary {
+    background: #495057;
+    color: #ffffff;
+    border: 1.5px solid #495057;
+}
+
+.btn-primary:hover {
+    background: #343a40;
+    border-color: #343a40;
+}
+
+@media (max-width: 1024px) {
+    .library-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .library-grid { grid-template-columns: 1fr; }
+}
+

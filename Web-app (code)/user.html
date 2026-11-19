@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>My Account - Plant AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,300..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="Materials\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Materials\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Materials\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="home.css"> 
+    <link rel="stylesheet" href="user.css">
+</head>
+
+<body>
+    <nav>
+        <div class="search-box">
+            <i class="bi bi-search"></i><input type="text" 
+           placeholder="Search disease (powdery mildew,...)"
+           onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') window.location.href='test.html'">
+            <i class="bi bi-arrow-right"
+            onmousedown="event.preventDefault()"
+            onclick="window.location.href='test.html'">
+            </i>
+        </div>
+        
+        <ul class="nav-btn">
+            <li class="active"><a href="index.html"><i class="bi bi-house-door"></i>Home</a></li>
+            <li><a href="camera.html"><i class="bi bi-camera"></i>Camera</a></li>
+            <li><a href="library.html"><i class="bi bi-book"></i>Library</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="acc-tab">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <div class="user-info">
+                    <p class="user-name">Your name here</p>
+                    <p class="user-settings">yourname@gmail.com</p>
+                </div>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="user.html"><i class="bi bi-person"></i>My account</a></li>
+                    <li><a href="setting.html"><i class="bi bi-gear"></i>Setting</a></li>
+                    <li><a href="login_register.html"><i class="bi bi-box-arrow-right"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="account-main fade-in">
+        <div class="page-header">
+            <h1>User Profile</h1>
+        </div>
+
+        <div class="account-container">
+            <div class="left-sidebar-column">
+                <div class="profile-summary">
+                    <div class="avatar-wrapper">
+                        <i class="bi bi-person-circle large-avatar"></i>
+                    </div>
+                    <h2 class="display-name">Your name here</h2>
+                    <p class="account-role">Standard User</p>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">12</span>
+                            <span class="stat-label">Scans</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">Oct 2026</span>
+                            <span class="stat-label">Joined</span>
+                        </div>
+                    </div>
+
+                    <button class="upload-btn">
+                        <i class="bi bi-camera"></i> Change Avatar
+                    </button>
+                </div>
+
+                <div class="fb-card">
+                    <h1 class="fb-title">Send Feedback</h1>
+                    <textarea placeholder="Your feedback..." class="fb-textarea"></textarea>
+                    
+                    <button type="button" class="fb-btn fb-emoji-btn" title="Happy">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512">
+                            <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="fb-btn fb-emoji-btn" title="Sad">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512">
+                            <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"></path>
+                        </svg>
+                    </button>
+
+                    <span class="fb-spacer"></span>
+
+                    <button type="button" class="fb-btn fb-send-btn" title="Send">
+                        <svg fill="none" viewBox="0 0 24 24" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M7.39999 6.32003L15.89 3.49003C19.7 2.22003 21.77 4.30003 20.51 8.11003L17.68 16.6C15.78 22.31 12.66 22.31 10.76 16.6L9.91999 14.08L7.39999 13.24C1.68999 11.34 1.68999 8.23003 7.39999 6.32003Z"></path>
+                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M10.11 13.6501L13.69 10.0601"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="profile-details fade-in-delay-1">
+                <h3 class="section-title">Personal Information</h3>
+                
+                <form class="account-form" onsubmit="event.preventDefault();">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" placeholder="Enter first name" value="Your">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Enter last name" value="Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="example@email.com" value="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+84 123 456 789">
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <h3 class="section-title">Security</h3>
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" placeholder="Leave blank to keep current">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel">Cancel</button>
+                        <button type="submit" class="btn-save">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

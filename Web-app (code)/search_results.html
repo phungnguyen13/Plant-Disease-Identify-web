@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="This is our website which can help you take care of your plants through only an image.">
+    <meta name="keyword" content="What happened to the plant?, How can I take care of it, plant care, plant disease">
+    <title>Leaf Image-Based Plant Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,300..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="Materials\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Materials\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Materials\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="camera.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="noti.css">
+</head>
+
+<body>
+    <nav>
+        <div class="search-box">
+            <i class="bi bi-search"></i><input type="text" 
+           placeholder="Search disease (powdery mildew,...)"
+           onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') window.location.href='search_results.html'">
+            <i class="bi bi-arrow-right"
+            onmousedown="event.preventDefault()"
+            onclick="window.location.href='search_results.html'">
+            </i>
+        </div>
+        
+        <ul class="nav-btn">
+            <div class="nav-slider"></div>
+            <li><a href="index.html"><i class="bi bi-house-door"></i>Home</a></li>
+            <li class="active"><a href="camera.html"><i class="bi bi-camera"></i>Camera</a></li>
+            <li><a href="library.html"><i class="bi bi-book"></i>Library</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="acc-tab">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <div class="user-info">
+                    <p class="user-name">Your name here</p>
+                    <p class="user-settings">yourname@gmail.com</p>
+                </div>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="user.html"><i class="bi bi-person"></i>My account</a></li>
+                    <li><a href="setting.html"><i class="bi bi-gear"></i>Setting</a></li>
+                    <li><a href="login_register.html"><i class="bi bi-box-arrow-right"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="camera-main">
+        <div class="tester-container">
+            <div class="left-panel hover-scale">
+                <div class="image-preview">
+                    <p class="preview-caption">Input image</p>
+                    <div class="placeholder-img" style="overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 0;">
+                        <i class="bi bi-image" id="previewIcon"></i>
+                        <img id="previewImg" src="" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        <div class="right-panel hover-scale">
+            
+            <div id="loadingState" class="loading-wrapper">
+                <div class="loader">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+                <p class="loading-text">Diagnosis...</p>
+            </div>
+
+            <div id="resultBox">
+                <div class="result-section">
+                    <h2 class="section-title" id="resPlantName">PLANT: -</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="resPlantBar" style="width: 0%;"></div>
+                        <span class="progress-text" id="resPlantConf">Confidence -</span>
+                    </div>
+                    <details class="expander">
+                        <summary>Top-k plant identification</summary>
+                        <div class="expander-content" id="resPlantTopK"><p>-</p></div>
+                    </details>
+                </div>
+
+                <div class="result-section">
+                    <h2 class="section-title" id="resDiseaseName">Condition: -</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="resDiseaseBar" style="width: 0%;"></div>
+                        <span class="progress-text" id="resDiseaseConf">Confidence -</span>
+                    </div>
+                    <div class="disease-details">
+                        <p><strong>Symptoms:</strong> <span id="resSymptoms">-</span></p>
+                        <p><strong>Cause:</strong> <span id="resCause">-</span></p>
+                    </div>
+                    <details class="expander">
+                        <summary>Top-k disease diagnosis</summary>
+                        <div class="expander-content" id="resDiseaseTopK"><p>-</p></div>
+                    </details>
+                </div>
+
+                <div class="result-section">
+                    <h2 class="section-title">Recommended Treatment Plan</h2>
+                    <div id="resTreatmentContainer">
+                        <p style="color: #6b7280; font-size: 14px;">-</p>
+                    </div>
+                </div>
+
+                <div class="latency-info" id="resLatency">⏱ -</div>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+    <script src="main.js"></script>
+    
+</body>
+</html>

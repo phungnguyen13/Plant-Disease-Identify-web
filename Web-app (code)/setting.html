@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Settings - Plant AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,300..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="home.css"> 
+    <link rel="stylesheet" href="setting.css">
+</head>
+
+<body>
+    <nav>
+        <div class="search-box">
+            <i class="bi bi-search"></i><input type="text" 
+           placeholder="Search disease (powdery mildew,...)"
+           onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') window.location.href='test.html'">
+            <i class="bi bi-arrow-right"
+            onmousedown="event.preventDefault()"
+            onclick="window.location.href='test.html'">
+            </i>
+        </div>
+        
+        <ul class="nav-btn">
+            <li class="active"><a href="index.html"><i class="bi bi-house-door"></i>Home</a></li>
+            <li><a href="camera.html"><i class="bi bi-camera"></i>Camera</a></li>
+            <li><a href="library.html"><i class="bi bi-book"></i>Library</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="acc-tab">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <div class="user-info">
+                    <p class="user-name">Your name here</p>
+                    <p class="user-settings">yourname@gmail.com</p>
+                </div>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="user.html"><i class="bi bi-person"></i>My account</a></li>
+                    <li><a href="setting.html"><i class="bi bi-gear"></i>Setting</a></li>
+                    <li><a href="login_register.html"><i class="bi bi-box-arrow-right"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="settings-main fade-in">
+        <div class="page-header">
+            <h1>Settings</h1>
+        </div>
+
+        <div class="settings-container">
+            <div class="settings-sidebar">
+                <button class="sidebar-tab active"><i class="bi bi-gear"></i> General</button>
+                <button class="sidebar-tab"><i class="bi bi-bell"></i> Notifications</button>
+                <button class="sidebar-tab"><i class="bi bi-cpu"></i> AI Model</button>
+                <button class="sidebar-tab"><i class="bi bi-shield-lock"></i> Privacy</button>
+            </div>
+
+            <div class="settings-content fade-in-delay-1">
+                <h2 class="section-title">General Settings</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Language</h3>
+                        <p>Select your preferred language for the interface.</p>
+                    </div>
+                    <div class="setting-action">
+                        <select class="setting-select">
+                            <option value="en" selected>English</option>
+                            <option value="vi">Vietnamese</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>High Contrast Mode</h3>
+                        <p>Increase contrast for better readability.</p>
+                    </div>
+                    <div class="setting-action">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Default Camera Source</h3>
+                        <p>Choose the default input method when opening the Camera tab.</p>
+                    </div>
+                    <div class="setting-action">
+                        <select class="setting-select">
+                            <option value="camera" selected>Device Camera</option>
+                            <option value="upload">File Upload</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Sound Effects</h3>
+                        <p>Play a sound when diagnosis is complete.</p>
+                    </div>
+                    <div class="setting-action">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 40px;">
+                    <button type="button" class="btn-cancel">Reset Defaults</button>
+                    <button type="button" class="btn-save">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

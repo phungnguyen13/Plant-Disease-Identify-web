@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="This is our website which can help you take care of your plants through only an image.">
+    <meta name="keyword" content="What happened to the plant?, How can I take care of it, plant care, plant disease">
+    <title>Leaf Image-Based Plant Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,300..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="Materials\favicon_io\apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Materials\favicon_io\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Materials\favicon_io\favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="camera.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="noti.css">
+</head>
+
+<body>
+    <nav>
+        <div class="search-box">
+            <i class="bi bi-search"></i><input type="text" 
+           placeholder="Search disease (powdery mildew,...)"
+           onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') window.location.href='search_results.html'">
+            <i class="bi bi-arrow-right"
+            onmousedown="event.preventDefault()"
+            onclick="window.location.href='search_results.html'">
+            </i>
+        </div>
+        
+        <ul class="nav-btn">
+            <div class="nav-slider"></div>
+            <li><a href="index.html"><i class="bi bi-house-door"></i>Home</a></li>
+            <li class="active"><a href="camera.html"><i class="bi bi-camera"></i>Camera</a></li>
+            <li><a href="library.html"><i class="bi bi-book"></i>Library</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="acc-tab">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <div class="user-info">
+                    <p class="user-name">Your name here</p>
+                    <p class="user-settings">yourname@gmail.com</p>
+                </div>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="user.html"><i class="bi bi-person"></i>My account</a></li>
+                    <li><a href="setting.html"><i class="bi bi-gear"></i>Setting</a></li>
+                    <li><a href="login_register.html"><i class="bi bi-box-arrow-right"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="camera-main">
+        <div class="tester-container">
+            <div class="left-panel hover-scale">
+                <div class="input-controls">
+                    <div class="upload-zone" style="cursor: pointer;" onclick="document.getElementById('fileInput').click()">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                        <p>Drag and drop or click to select an image (jpg, png)</p>
+                        
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="image-preview">
+                    <p class="preview-caption">Input image</p>
+                    <div class="placeholder-img" style="overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 0;">
+                        <i class="bi bi-image" id="previewIcon"></i>
+                        <img id="previewImg" src="" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        <div class="right-panel hover-scale">
+            
+            <div id="loadingState" class="loading-wrapper">
+                <div class="loader">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+                <p class="loading-text">Diagnosis...</p>
+            </div>
+
+            <div id="resultBox">
+                <div class="result-section">
+                    <h2 class="section-title" id="resPlantName">PLANT: -</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="resPlantBar" style="width: 0%;"></div>
+                        <span class="progress-text" id="resPlantConf">Confidence -</span>
+                    </div>
+                    <details class="expander">
+                        <summary>Top-k plant identification</summary>
+                        <div class="expander-content" id="resPlantTopK"><p>-</p></div>
+                    </details>
+                </div>
+
+                <div class="result-section">
+                    <h2 class="section-title" id="resDiseaseName">Condition: -</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="resDiseaseBar" style="width: 0%;"></div>
+                        <span class="progress-text" id="resDiseaseConf">Confidence -</span>
+                    </div>
+                    <div class="disease-details">
+                        <p><strong>Symptoms:</strong> <span id="resSymptoms">-</span></p>
+                        <p><strong>Cause:</strong> <span id="resCause">-</span></p>
+                    </div>
+                    <details class="expander">
+                        <summary>Top-k disease diagnosis</summary>
+                        <div class="expander-content" id="resDiseaseTopK"><p>-</p></div>
+                    </details>
+                </div>
+
+                <div class="result-section">
+                    <h2 class="section-title">Recommended Treatment Plan</h2>
+                    <div id="resTreatmentContainer">
+                        <p style="color: #6b7280; font-size: 14px;">-</p>
+                    </div>
+                </div>
+
+                <div class="latency-info" id="resLatency">⏱ -</div>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>Contact with us</h3>
+                
+                <ul class="example-2">
+                    <li class="icon-content">
+                        <a data-social="gmail" aria-label="Gmail" href="https://www.gmail.com/">
+                            <div class="filled"></div>
+                            <svg viewBox="0 0 24 24" version="1.1" width="24" height="24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>                        
+                        </a>
+                        <div class="tooltip">Gmail</div>
+                    </li>
+                    <li class="icon-content">
+                        <a data-social="sms" aria-label="SMS" href="https://www.sms.com/">
+                            <div class="filled"></div>
+                            <svg viewBox="0 0 24 24" version="1.1" style="width: 32px; height: 32px; min-width: 32px;">
+                            <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 1.58.368 3.073 1.018 4.41l-1.34 3.905a.5.5 0 0 0 .618.618l3.905-1.34A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"></path>
+                            </svg>                       
+                        </a>
+                        <div class="tooltip">SMS</div>
+                    </li>
+                    <li class="icon-content">
+                        <a data-social="facebook" aria-label="Facebook" href="https://facebook.com/">
+                            <div class="filled"></div>
+                            <svg viewBox="0 0 24 24" version="1.1" style="width: 32px; height: 34px; min-width: 34px;">
+                            <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"></path>
+                            </svg>             
+                        </a>
+                        <div class="tooltip">Facebook</div>
+                    </li>
+                    <li class="icon-content">
+                        <a data-social="zalo" aria-label="Zalo" href="https://zalo.org/">
+                            <div class="filled"></div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24">
+                            <g transform="translate(1.40659 1.40659) scale(2.81 2.81)">
+                            <path fill="none" d="M 78.4 2.18 H 25.644 L 25.643 2.18 c 1.994 0.013 3.989 0.025 5.984 0.025 c 0.119 0 0.276 -0.059 0.335 0.136 c -0.038 0.352 -0.394 0.394 -0.61 0.53 c -3.891 2.28 -7.447 5.01 -10.431 8.388 c -4.929 5.578 -8.35 11.982 -9.507 19.429 c -2.043 13.143 2.064 24.303 11.355 33.615 c 1.649 1.67 1.865 2.967 0.551 5.205 c -1.589 2.691 -4.01 4.518 -6.582 6.188 c -0.276 0.157 -0.551 0.352 -0.826 0.53 c -0.411 0.352 -0.157 0.53 0.195 0.687 v -0.008 c 5.01 0.983 9.901 0.314 14.716 -1.157 c 1.632 -0.492 3.259 -0.983 4.912 -1.394 c 1.119 -0.297 2.297 -0.237 3.378 0.157 c 12.457 4.281 24.752 3.891 36.853 -1.416 c 4.929 -2.179 9.43 -5.247 13.241 -9.074 c 0.195 -0.195 0.335 -0.492 0.687 -0.513 c 0.178 0.275 0.081 0.568 0.081 0.865 v 11.495 c 0 0.002 0 0.003 0 0.005 L 90 75.865 V 13.78 C 90 7.373 84.806 2.18 78.4 2.18 z"/>
+                            <path fill="currentColor" d="M 54.896 33.548 v -1.127 h 3.374 v 15.835 h -1.928 c -0.793 0 -1.441 -0.64 -1.441 -1.433 l 0 0 c -1.361 0.992 -3.039 1.585 -4.853 1.585 c -4.544 0 -8.227 -3.679 -8.227 -8.218 s 3.683 -8.218 8.227 -8.218 C 51.857 31.963 53.536 32.552 54.896 33.548 C 54.896 33.544 54.896 33.548 54.896 33.548 z M 40.943 27.331 v 0.513 c 0 0.958 -0.127 1.738 -0.75 2.657 l -0.076 0.085 c -0.136 0.153 -0.454 0.517 -0.606 0.712 L 28.681 44.886 h 12.258 v 1.924 c 0 0.797 -0.648 1.441 -1.445 1.441 H 23.617 v -0.907 c 0 -1.11 0.275 -1.606 0.623 -2.123 l 11.541 -14.288 H 24.095 v -3.607 h 16.848 V 27.331 z M 62.36 48.256 c -0.665 0 -1.204 -0.538 -1.204 -1.199 V 27.331 h 3.611 v 20.925 H 62.36 z M 75.444 31.862 c 4.573 0 8.282 3.709 8.282 8.278 c 0 4.573 -3.709 8.278 -8.282 8.278 c -4.573 0 -8.282 -3.709 -8.282 -8.278 C 67.162 35.57 70.867 31.862 75.444 31.862 z M 50.043 45.018 c 2.674 0 4.84 -2.166 4.84 -4.836 c 0 -2.666 -2.166 -4.832 -4.84 -4.832 c -2.674 0 -4.84 2.166 -4.84 4.832 C 45.203 42.856 47.373 45.018 50.043 45.018 z M 75.444 45.013 c 2.687 0 4.87 -2.183 4.87 -4.87 c 0 -2.687 -2.183 -4.866 -4.87 -4.866 c -2.691 0 -4.87 2.179 -4.87 4.866 C 70.57 42.831 72.748 45.013 75.444 45.013 z"/>
+                            <path fill="currentColor" d="M 16.106 76.912 c -0.352 -0.157 -0.606 -0.335 -0.195 -0.687 c 0.276 -0.178 0.551 -0.373 0.826 -0.53 c 2.573 -1.67 4.993 -3.497 6.582 -6.188 c 1.314 -2.238 1.098 -3.535 -0.551 -5.205 c -9.291 -9.312 -13.398 -20.472 -11.355 -33.615 c 1.157 -7.447 4.578 -13.851 9.507 -19.429 c 2.984 -3.378 6.54 -6.108 10.431 -8.388 c 0.216 -0.136 0.572 -0.178 0.61 -0.53 c -0.059 -0.195 -0.216 -0.136 -0.335 -0.136 c -6.62 0 -13.241 -0.14 -19.84 0.038 C 5.48 2.421 0 7.313 0 14.327 c 0.038 20.51 0 41.003 0 61.491 c 0 6.349 4.853 11.673 11.198 11.927 c 5.366 0.199 10.749 0.021 16.11 0.021 c 0.394 0 0.788 0.021 1.174 0.064 h 28.389 c 7.074 0 14.144 0.038 21.218 0 h 0.097 c 6.561 -0.059 11.825 -5.404 11.787 -11.965 V 64.37 c 0 -0.297 0.097 -0.589 -0.081 -0.865 c -0.352 0.021 -0.492 0.318 -0.687 0.513 c -3.81 3.827 -8.312 6.896 -13.241 9.074 c -12.101 5.307 -24.396 5.696 -36.853 1.416 c -1.081 -0.394 -2.259 -0.453 -3.378 -0.157 c -1.653 0.411 -3.281 0.903 -4.912 1.394 c -4.815 1.471 -9.706 2.14 -14.716 1.157"/>
+                            </g>
+                            </svg>                   
+                        </a>
+                        <div class="tooltip">Zalo</div>
+                    </li>
+                </ul>
+
+                <p class="footer-legal">All content (UI elements) on this site are published under the <a href="#">MIT License</a>.</p>
+                <p class="footer-copyright">@2026 VNU students group</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Links</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Camera</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Feedback</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Guides</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Getting started</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Guides</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Getting started</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col newsletter-col">
+                <h3>Newsletter signup</h3>
+                <p>Write down your email address if you need .......</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="yourname@gmail.com" required>
+                    <button type="submit"><i class="bi bi-send-fill"></i></button>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+    
+</body>
+</html>
